@@ -2,7 +2,7 @@
 
 This repository contains a beginner-friendly Jupyter Notebook that demonstrates a basic neuroimaging workflow using **Neurodesk** and **FSL**.
 
-## ✅ What this notebook does
+##  What this notebook does
 Using a BIDS-format dataset, the notebook performs:
 
 - Loading **FSL** inside Neurodesk
@@ -14,6 +14,6 @@ Using a BIDS-format dataset, the notebook performs:
 - Exporting quick visualizations as PNG slices
 - Creating an **overlay image** (mask highlighted on top of the original scan)
 
-## 📂 Output files (saved locally)
+##  Output files (saved locally)
 Outputs are saved to:
 
