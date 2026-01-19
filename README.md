@@ -32,7 +32,7 @@ Example outputs:
    - `fsl_basic_project.ipynb`
 4. Run cells in order from top to bottom
 
-## 🛠 Tools used
+##  Tools used
 - **Neurodesk**
 - **FSL 6.0.7.4**
 - BET2 (`bet2`)
