@@ -69,3 +69,6 @@ Example outputs generated:
 - It also works in environments where GUI apps (like ITK-SNAP / FSLeyes) may not launch, since PNG outputs are exported directly using command-line tools.
 
 Made by Avanith Kanamarlapudi
+
+adding more tool
+
