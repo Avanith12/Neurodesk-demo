@@ -21,13 +21,17 @@ This notebook is designed to run inside Neurodesk / Neurodesktop (Docker-based e
 It will NOT run directly in Google Colab, because it depends on:
 - the Neurodesk module loader: ml fsl/<version>
 - FSL command-line tools such as: bet2, fslmaths, and slicer
-
-## Dataset used (BIDS format)
-The dataset used in this workflow is organized in BIDS format (Brain Imaging Data Structure) and contains multiple subjects such as:
-sub-01/
-sub-02/
-sub-03/
 ...
+##  Dataset Used
+
+For this experiment, I used a public brain MRI dataset from **OpenNeuro**:
+
+- **Dataset Name:** ds000114 (Finger Foot Lips)
+- **Source:** OpenNeuro
+- **Download Link:** https://openneuro.org/datasets/ds000114/versions/1.0.2/download
+
+This dataset contains structural MRI (T1-weighted) brain scans in **BIDS format**, which were used to test FSL tools such as **BET2 (brain extraction)**, **FAST (tissue segmentation)**, and **FLIRT (registration)**.
+
 
 Example input file used in the notebook:
 sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz
