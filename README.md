@@ -70,5 +70,5 @@ Example outputs generated:
 
 Made by Avanith Kanamarlapudi
 
-adding more tool
+adding more tools
 
