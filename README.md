@@ -1,5 +1,5 @@
 # Neurodesk + FSL Basic Project (Skull Stripping + Overlay)
-
+#more to come soon 
 
 This repository contains a beginner-friendly Jupyter Notebook that demonstrates a basic neuroimaging workflow using Neurodesk (Neurodesktop) and FSL on a BIDS-format dataset.
 
