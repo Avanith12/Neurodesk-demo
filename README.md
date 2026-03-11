@@ -69,5 +69,170 @@ Example outputs generated:
 - This notebook is intentionally lightweight and beginner-friendly.
 - It also works in environments where GUI apps (like ITK-SNAP / FSLeyes) may not launch, since PNG outputs are exported directly using command-line tools.
 
+# Running the Workflow in Terminal
+
+## Step 1: Navigate to the dataset directory
+
+cd /home/jovyan/neurodesktop-storage/test_neurodesk
+pwd
+
+Expected output:
+
+/home/jovyan/neurodesktop-storage/test_neurodesk
+
+---
+
+## Step 2: Load FSL
+
+ml fsl/6.0.7.4
+
+Verify installation:
+
+which bet2
+
+Expected output:
+
+/neurodesktop-storage/containers/fsl_6.0.7.4_20231005/bet2
+
+---
+
+## Step 3: Check BET2 help
+
+bet2 -h | head -n 5
+
+Example output:
+
+BET (Brain Extraction Tool) v2.1 - FMRIB Analysis Group, Oxford
+
+Usage:
+bet2 <input_fileroot> <output_fileroot> [options]
+
+---
+
+## Step 4: Define input and output paths
+
+T1=./sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz
+OUT=/home/jovyan/fsl_out
+
+mkdir -p $OUT
+
+echo "T1 = $T1"
+echo "OUT = $OUT"
+
+Expected output:
+
+T1 = ./sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz
+OUT = /home/jovyan/fsl_out
+
+---
+
+## Step 5: Run Skull Stripping
+
+bet2 $T1 $OUT/sub-01_T1w_brain.nii.gz -m -f 0.5
+
+This removes the skull from the MRI scan.
+
+Parameters used:
+
+-m  → generate brain mask  
+-f 0.5 → fractional intensity threshold  
+
+Output files created:
+
+sub-01_T1w_brain.nii.gz  
+sub-01_T1w_brain.nii.gz_mask.nii.gz  
+
+---
+
+## Step 6: Export brain slices as PNG
+
+slicer $OUT/sub-01_T1w_brain.nii.gz -a $OUT/brain_slices.png
+
+Output:
+
+brain_slices.png
+
+---
+
+## Step 7: Export mask slices
+
+slicer $OUT/sub-01_T1w_brain.nii.gz_mask.nii.gz -a $OUT/mask_slices.png
+
+Output:
+
+mask_slices.png
+
+---
+
+## Step 8: Make mask brighter
+
+fslmaths $OUT/sub-01_T1w_brain.nii.gz_mask.nii.gz -mul 2000 $OUT/mask_highlight.nii.gz
+
+Output file:
+
+mask_highlight.nii.gz
+
+---
+
+## Step 9: Overlay mask on original MRI
+
+fslmaths $T1 -add $OUT/mask_highlight.nii.gz $OUT/T1_with_mask_overlay.nii.gz
+
+Output file:
+
+T1_with_mask_overlay.nii.gz
+
+---
+
+## Step 10: Export overlay visualization
+
+slicer $OUT/T1_with_mask_overlay.nii.gz -a $OUT/T1_with_mask_overlay.png
+
+Output:
+
+T1_with_mask_overlay.png
+
+---
+
+## Step 11: Check generated files
+
+ls -lh $OUT
+
+Expected output files:
+
+sub-01_T1w_brain.nii.gz  
+sub-01_T1w_brain.nii.gz_mask.nii.gz  
+brain_slices.png  
+mask_slices.png  
+mask_highlight.nii.gz  
+T1_with_mask_overlay.nii.gz  
+T1_with_mask_overlay.png  
+
+---
+
+# Summary
+
+This workflow demonstrates a simple neuroimaging pipeline using Neurodesk and FSL.
+
+Steps performed:
+
+1. Load FSL inside Neurodesk
+2. Run BET2 for brain extraction
+3. Generate a brain mask
+4. Export visualization slices
+5. Create overlay images
+
+
+
+
+
+
+
+
+
+
+
+
+
 Made by Avanith Kanamarlapudi
 
