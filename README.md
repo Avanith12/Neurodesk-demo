@@ -71,4 +71,3 @@ Example outputs generated:
 
 Made by Avanith Kanamarlapudi
 
-## adding more explanation
